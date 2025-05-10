@@ -1,19 +1,44 @@
+import os
+import csv
 import asyncio
-from telethon import TelegramClient, errors
+import random
+import requests
+import sqlite3
+
+from telethon import TelegramClient
+from telethon.errors import (
+    FloodWaitError,
+    PhoneNumberBannedError,
+    SessionPasswordNeededError
+
 from telethon.tl.functions.account import ReportPeerRequest
+from telethon.tl.types import (
+    InputReportReasonSpam,
+    InputReportReasonViolence,
+    InputReportReasonChildAbuse,
+    InputReportReasonPornography,
+    InputReportReasonCopyright,
+    InputReportReasonFake,
+    InputReportReasonOther
 
 # Replace with your own Telegram API credentials
-API_ID = 'YOUR_API_ID'
-API_HASH = 'YOUR_API_HASH'
+API_ID = '27157163'
+API_HASH = 'e0145db12519b08e1d2f5628e2db18c4'
 
 client = TelegramClient('session_report', API_ID, API_HASH)
 
 REASON_CODES = {
-    "0": "Spam",
-    "1": "Child abuse",
-    "2": "Copyright",
-    "3": "Unwanted contact or harassment",
-    "4": "Other"
+    "0": ("Spam",InputReportReasonSpam()),
+    "1": ("Child Abuse", InputReportReasonChildAbuse()),
+    "2": ("Violence", InputReportReasonViolence()),
+    "3": ("Illegal Goods", InputReportReasonOther()),
+    "4": ("Illegal Adult Content", InputReportReasonPornography()),
+    "5": ("Personal Data", InputReportReasonOther()),
+    "6": ("Terrorism", InputReportReasonOther()),
+    "7": ("Scam or Spam", InputReportReasonSpam()),
+    "8": ("Copyright Violation", InputReportReasonCopyright()),
+    "9": ("Fake Account", InputReportReasonFake()),
+    "10": ("Other", InputReportReasonOther()),
 }
 
 async def report_target(username_or_id: str, reason_code: int, report_times: int = 1):
