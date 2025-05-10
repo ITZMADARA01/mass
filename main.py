@@ -103,5 +103,3 @@ async def main():
 if _name_ == '_main_':
   try:
         asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\n✗ Program interrupted by user.")
