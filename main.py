@@ -9,7 +9,8 @@ from telethon import TelegramClient
 from telethon.errors import (
     FloodWaitError,
     PhoneNumberBannedError,
-    SessionPasswordNeededError
+    SessionPasswordNeededError,
+)
 
 from telethon.tl.functions.account import ReportPeerRequest
 from telethon.tl.types import (
