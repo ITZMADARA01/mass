@@ -101,4 +101,7 @@ async def main():
     await client.disconnect()
 
 if _name_ == '_main_':
-    asyncio.run(main())
+  try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("\n✗ Program interrupted by user.")
