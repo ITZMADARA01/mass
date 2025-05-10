@@ -20,7 +20,8 @@ from telethon.tl.types import (
     InputReportReasonPornography,
     InputReportReasonCopyright,
     InputReportReasonFake,
-    InputReportReasonOther
+    InputReportReasonOther,
+)
 
 # Replace with your own Telegram API credentials
 API_ID = '27157163'
